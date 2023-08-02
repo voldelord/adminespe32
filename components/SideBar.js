@@ -1,9 +1,12 @@
 import { forwardRef } from "react";
 import Link from "next/link";
-import { FiMonitor, FiCreditCard } from "react-icons/fi"; // Import the icons from react-icons
+import { FaUsers } from "react-icons/fa";
 import { AiOutlineWifi } from "react-icons/ai";
 import { VscSettings } from "react-icons/vsc";
 import { HiDevicePhoneMobile } from "react-icons/hi2";
+import { BsKey } from "react-icons/bs";
+import { IoHomeOutline } from "react-icons/io5";
+import { SlLogout } from "react-icons/sl";
 import { useRouter } from "next/router";
 
 const SideBar = forwardRef(({ showNav }, ref) => {
@@ -22,20 +25,21 @@ const SideBar = forwardRef(({ showNav }, ref) => {
       </div>
 
       <div className="flex flex-col">
-        <Link href="/">
+        <Link href="/"></Link>
+        <Link href="/overview">
           <div
             className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
-              router.pathname === "/"
+              router.pathname === "/overview"
                 ? "bg-white text-black"
                 : "text-gray-400 hover:bg-white"
             }`}
           >
             <div className="mr-2">
-              <FiMonitor className="h-5 w-5" />{" "}
-              {/* Use FiHome icon from react-icons */}
+              <IoHomeOutline className="h-5 w-5" />{" "}
+              {/* Use FiUser icon from react-icons */}
             </div>
             <div>
-              <p>Monitor</p>
+              <p>Overview</p>
             </div>
           </div>
         </Link>
@@ -87,6 +91,57 @@ const SideBar = forwardRef(({ showNav }, ref) => {
             </div>
             <div>
               <p>Devices</p>
+            </div>
+          </div>
+        </Link>
+        <Link href="/authentication">
+          <div
+            className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
+              router.pathname === "/account"
+                ? "bg-white text-black"
+                : "text-gray-400 hover:bg-white"
+            }`}
+          >
+            <div className="mr-2">
+              <BsKey className="h-5 w-5" />{" "}
+              {/* Use FiUser icon from react-icons */}
+            </div>
+            <div>
+              <p>Authentication</p>
+            </div>
+          </div>
+        </Link>
+        <Link href="/manager">
+          <div
+            className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
+              router.pathname === "/account"
+                ? "bg-white text-black"
+                : "text-gray-400 hover:bg-white"
+            }`}
+          >
+            <div className="mr-2">
+              <FaUsers className="h-5 w-5" />{" "}
+              {/* Use FiUser icon from react-icons */}
+            </div>
+            <div>
+              <p>Client Manager</p>
+            </div>
+          </div>
+        </Link>
+        <Link href="/">
+          <div
+            className={`pl-6 py-3 mx-5 rounded text-center cursor-pointer mb-3 flex items-center transition-colors ${
+              router.pathname === "/login"
+                ? "bg-white text-black"
+                : "text-gray-400 hover:bg-white"
+            }`}
+          >
+            <div className="mr-2">
+              <SlLogout className="h-5 w-5" />{" "}
+              {/* Use FiUser icon from react-icons */}
+            </div>
+            <div>
+              <p>Exit</p>
             </div>
           </div>
         </Link>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { VscAdd } from "react-icons/vsc";
-import { AiFillEdit } from "react-icons/ai";
-import { BsTrash } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import {
   Table,
   Thead,
@@ -12,7 +11,7 @@ import {
   Td,
   TableCaption,
   TableContainer,
-  Box,
+  Input,
   Button,
   Modal,
   ModalOverlay,
@@ -21,39 +20,58 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
+  Box,
 } from "@chakra-ui/react";
-import DevicesRegisterModal from "./DevicesRegisterModal";
+import { AiFillEdit } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
+import AuthenticationModal from "./AuthenticationModal";
 
-const Devices = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const Authentication = () => {
+  const [input1Value, setInput1Value] = useState("");
+  const [isModalOpens, setIsModalOpens] = useState(false);
+
+  const handleInput1Change = (event) => {
+    setInput1Value(event.target.value);
+  };
+
   const handleButton1Click = () => {
-    setIsModalOpen(true); // Abre el modal al hacer clic en el botón
+    setIsModalOpens(true); // Abre el modal al hacer clic en el botón
   };
 
   const handleCloseModal = () => {
-    setIsModalOpen(false); // Cierra el modal al hacer clic en el botón de cierre o fuera del modal
+    setIsModalOpens(false); // Cierra el modal al hacer clic en el botón de cierre o fuera del modal
   };
-
   return (
     <div className="bg-white rounded-md shadow-lg p-10 w-auto">
-      <Box display="flex" justifyContent="flex-end" mb={4}>
-        <Button
-          colorScheme="green"
-          size={"md"}
-          onClick={handleButton1Click}
+      <div className="flex mb-4">
+        {/* Input 1 */}
+        <Input
+          value={input1Value}
+          onChange={handleInput1Change}
+          placeholder="Username"
           mr={2}
-        >
+        />
+        {/* Button 1 */}
+        <Button colorScheme="green" onClick={handleButton1Click} mr={2}>
+          <BsSearch size={20} />
+        </Button>
+        {/* Button 1 */}
+        <Button colorScheme="green" onClick={handleButton1Click} mr={2}>
           <VscAdd size={20} />
         </Button>
-      </Box>
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+      </div>
+
+      <p className="font-bold text-xl mb-4">Clients</p>
+
+      {/* Agregar el componente Modal */}
+      <Modal isOpen={isModalOpens} onClose={handleCloseModal}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>AddACL</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {/* Contenido del modal */}
-            <DevicesRegisterModal />
+            <AuthenticationModal />
           </ModalBody>
           <ModalFooter>
             {/* Agregar botones u otros elementos en el footer del modal si es necesario */}
@@ -66,32 +84,21 @@ const Devices = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+
       <TableContainer>
         <Table variant="simple">
           <Thead>
             <Tr className="bg-gray-200 rounded-xl">
-              <Th>ClientID</Th>
-              <Th>Topics</Th>
-              <Th>Status</Th>
-              <Th>Bytes Transmitidos</Th>
-              <Th>Bytes</Th>
-              <Th>Action</Th>
+              <Th>Username</Th>
+              <Th textAlign="right">Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
             <Tr>
-              <Td>Dispositivo1</Td>
-              <Td>0/10</Td>
+              <Td>Device1</Td>
               <Td>
-                <Button colorScheme="green" size={"md"} mr={2}>
-                  Conectado
-                </Button>
-              </Td>
-              <Td>944.803.515</Td>
-              <Td>11.296.805.751</Td>
-              <Td>
-                <Box display="flex" gap={2}>
-                  <AiFillEdit className="cursor-pointer overflow-hidden" />
+                <Box display="flex" justifyContent="flex-end" gap={2}>
+                  <AiFillEdit />
                   <BsTrash />
                 </Box>
               </Td>
@@ -103,4 +110,4 @@ const Devices = () => {
   );
 };
 
-export default Devices;
+export default Authentication;

@@ -82,7 +82,7 @@ const Client = () => {
 
       <TableContainer>
         <Table variant="simple">
-          <Thead>
+          <Thead className="bg-gray-200 rounded-xl">
             <Tr>
               <Th>ClientID</Th>
               <Th>Number of Permisions</Th>
